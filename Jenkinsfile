@@ -1,11 +1,6 @@
 pipeline {
 	agent { label 'docker-maven-slave' }
 	stages {
-		stage('Clean Workspace') {
-			steps {
-				cleanWs()
-			}
-		}
 		stage('Build') {
 			steps {
 				sh "mvn -B -Dskiptests=true clean install"
