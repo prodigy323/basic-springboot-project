@@ -1,6 +1,7 @@
 #!/usr/bin/env groovy
 
 def githubToken = '8ad35613-0fb3-4b54-ba54-a65da52fca53'
+def pomVersion = readMavenPom().getVersion()
 
 pipeline {
 	agent { label 'docker-maven-slave' }
@@ -12,7 +13,15 @@ pipeline {
 		}
 		stage('Publish to Nexus') {
 			steps {
-				sh "mvn -B -s mavenSettings.xml deploy"
+				withCredentials([string(credentialsId: "${githubToken}", variable: 'TOKEN')]) {
+					sh """
+						mvn -B -s mavenSettings.xml deploy
+						git config user.email "jhng323@gmail.com"
+						git config user.name "prodigy323"
+						git tag -am "${pomVersion}"
+						git push --tags https://\${TOKEN}@github.com/prodigy323/basic-springboot-project.git
+					"""
+				}
 			}
 		}
 		stage('Bump Version') {
