@@ -10,9 +10,9 @@ pipeline {
 				sh "mvn -B -Dskiptests=true clean install"
 			}
 		}
-		stage('Artifactory') {
+		stage('Publish to Nexus') {
 			steps {
-				echo "Artifactory step"
+				sh "mvn -B deploy"
 			}
 		}
 		stage('Bump Version') {
