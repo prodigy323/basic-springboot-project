@@ -12,7 +12,7 @@ pipeline {
 		}
 		stage('Publish to Nexus') {
 			steps {
-				sh "mvn -B deploy"
+				sh "mvn -B -s mavenSettings.xml deploy"
 			}
 		}
 		stage('Bump Version') {
