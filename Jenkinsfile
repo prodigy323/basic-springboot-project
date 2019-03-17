@@ -14,7 +14,8 @@ pipeline {
 		stage('Bump Version') {
 			steps {
 				sh """
-					mvn build-helper:parse-version versions:set -DnewVersion='\${parsedVersions.majorVersion}.\${parsedVersion.MinorVersion}.\${parsedVersion.NextIncrementalVersion}-SNAPSHOT'
+					#mvn build-helper:parse-version versions:set -DnewVersion='\${parsedVersions.majorVersion}.\${parsedVersion.MinorVersion}.\${parsedVersion.NextIncrementalVersion}-SNAPSHOT'
+					mvn -B versions:set -DnextSnapshot
 					git commit -am "[ci skip] Bump Snapshot Version"
 					git push
 				"""
