@@ -12,7 +12,9 @@ pipeline {
 		}
 		stage('Publish to Nexus') {
 			steps {
-				def pomVersion = readMavenPom().getVersion()
+				script {
+					def pomVersion = readMavenPom().getVersion()
+				}
 				withCredentials([string(credentialsId: "${githubToken}", variable: 'TOKEN')]) {
 					sh """
 						mvn -B -s mavenSettings.xml deploy
