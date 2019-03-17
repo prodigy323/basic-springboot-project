@@ -24,7 +24,7 @@ pipeline {
 						git config user.email "jhng323@gmail.com"
 						git config user.name "prodigy323"
 						git commit -am "[ci skip] Bump Snapshot Version"
-						git push -u origin master
+						git push https://${TOKEN}@github.com/prodigy323/basic-springboot-project.git
 					'''
 				}
 			}
