@@ -15,8 +15,8 @@ pipeline {
 		}
 		stage('Publish to Nexus') {
 			steps {
-				glPublishToNexus credentialsId: "${githubToken}"
-					skipTest: true
+				glPublishToNexus credentialsId: "${githubToken}",
+					skipTest: true,
 					settingsXml: "mavenSettings.xml"
 			}
 		}
