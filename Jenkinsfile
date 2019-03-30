@@ -13,22 +13,13 @@ pipeline {
 				glMavenBuild skipTest: true
 			}
 		}
-//		stage('Publish to Nexus') {
-//			steps {
-//			    script {
-//			        pom = readMavenPom file: 'pom.xml'
-//			    }
-//				withCredentials([string(credentialsId: "${githubToken}", variable: 'TOKEN')]) {
-//					sh """
-//						mvn -B -DskipTests=true -s mavenSettings.xml deploy
-//						git config user.email "jhng323@gmail.com"
-//						git config user.name "prodigy323"
-//						git tag -a ${pom.version} -m 'create tag ${pom.version}'
-//						git push --tags https://\${TOKEN}@github.com/prodigy323/basic-springboot-project.git
-//					"""
-//				}
-//			}
-//		}
+		stage('Publish to Nexus') {
+			steps {
+				glPublishToNexus credentialsId: "${githubToken}"
+					skipTest: true
+					settingsXml: "mavenSettings.xml"
+			}
+		}
 //		stage('Bump Version') {
 //			steps {
 //				withCredentials([string(credentialsId: "${githubToken}", variable: 'TOKEN')]) {
