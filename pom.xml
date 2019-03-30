@@ -18,6 +18,12 @@
 		<java.version>1.8</java.version>
 	</properties>
 
+	<scm>
+		<connection>scm:git:https://github.com/prodigy323/basic-springboot-project.git</connection>
+		<developerConnection>scm:git:https://github.com/prodigy323/basic-springboot-project.git</developerConnection>
+		<url>https://github.com/prodigy323/basic-springboot-project</url>
+	</scm>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
