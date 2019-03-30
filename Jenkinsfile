@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-//@Library('jenkins-global-libraries') _
+@Library('jenkins-global-libraries') _
 
 def githubToken = '8ad35613-0fb3-4b54-ba54-a65da52fca53'
 def pom
