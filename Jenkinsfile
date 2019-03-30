@@ -10,7 +10,7 @@ pipeline {
 	stages {
 		stage('Build') {
 			steps {
-				glMavenBuild()
+				glMavenBuild skipTest: true
 			}
 		}
 //		stage('Publish to Nexus') {
